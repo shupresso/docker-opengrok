@@ -34,3 +34,10 @@ then
   done
 
 fi
+
+echo "** Update the index every 30 minute."
+while true
+do
+    ./OpenGrok index
+    sleep 1800
+done
