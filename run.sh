@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Start Tomcat
+echo "** Staring Tomcat"
+service tomcat7 start
+
 # link mounted source directory to opengrok
 if [ ! -h $OPENGROK_INSTANCE_BASE/src ]; then
   ln -s /src $OPENGROK_INSTANCE_BASE/src
@@ -10,9 +14,6 @@ echo "** Running first-time indexing"
 cd /opengrok/bin
 ./OpenGrok index
 
-# Start Tomcat
-echo "** Staring Tomcat"
-service tomcat7 start
 
 if [ -n "$ENABLE_INOTIFY" ];
 then
@@ -31,4 +32,5 @@ then
     echo "*** Updating index"
     ./OpenGrok index
   done
-done
+
+fi
